@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Lifelong Edition ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Newstyle.css">
+</head>
+<body>
+
+    <!-- Native Audio Engine -->
+    <audio id="bgMusic" src="romantic-bgm.mp3" loop prefetch></audio>
+
+    <!-- Floating Audio Control -->
+    <div class="music-control-wrapper">
+        <button id="musicToggleBtn" class="music-btn">🎵 Play Music</button>
+    </div>
+
+    <!-- Persistent Background Image of Her -->
+    <div id="app-background" class="bg-focus-sharp"></div>
+    <div id="ambient-overlay"></div>
+    <div id="particle-container"></div>
+
+    <!-- Main Dynamic Container -->
+    <main class="experience-container">
+        
+        <!-- Section 1: Cinematic Welcome Cover -->
+        <section class="story-card active" id="scene1" data-bg="sharp">
+            <span class="subtitle-tag">A Lifelong Edition</span>
+            <h1 class="main-title">To Celebrating <br>Your Day <br><span class="gold-glow">XYZ</span></h1>
+            
+            <div class="center-accent">
+                <div class="pulse-ring"></div>
+                <div class="sparkle-icon">✨</div>
+            </div>
+        </section>
+
+        <!-- Section 2: Seamless Interactive Menu -->
+        <section class="story-card" id="scene2" data-bg="blur-light">
+            <h2 class="section-title">Chapters of Reflection</h2>
+            <nav class="timeline-nav">
+                <div class="nav-item" onclick="jumpToScene(3)">
+                    <span class="num">01</span><span class="label">Preface: A Quiet Sanctuary</span>
+                </div>
+                <div class="nav-item" onclick="jumpToScene(4)">
+                    <span class="num">02</span><span class="label">Chapter I: Where It All Began</span>
+                </div>
+                <div class="nav-item" onclick="jumpToScene(5)">
+                    <span class="num">03</span><span class="label">Chapter II: The Quiet Moments</span>
+                </div>
+                <div class="nav-item" onclick="jumpToScene(6)">
+                    <span class="num">04</span><span class="label">Chapter III: Laughter & Light</span>
+                </div>
+                <div class="nav-item" onclick="jumpToScene(7)">
+                    <span class="num">05</span><span class="label">Epilogue: A Simple Truth</span>
+                </div>
+            </nav>
+        </section>
+
+        <!-- Section 3: Preface -->
+        <section class="story-card" id="scene3" data-bg="blur-heavy">
+            <h2 class="section-title">Preface</h2>
+            <div class="text-block">
+                <p>Today isn't just an ordinary calendar date; it's the anniversary of the day the world became a significantly brighter, kinder, and more vibrant place because you entered it.</p>
+                <p>I wanted to compile something unique and quiet just for you—a little digital sanctuary where we can step away from the daily rush and look back at a few of the milestones that define my absolute favorite chapters in existence.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Chapter 1 -->
+        <section class="story-card" id="scene4" data-bg="blur-heavy">
+            <h2 class="section-title">Where It All Began</h2>
+            <div class="inline-gallery-frame">
+                <img src="image1.jpg" alt="Shared Moment 1" class="gallery-img">
+            </div>
+            <div class="text-block">
+                <p>This image always takes me right back to that exact timeline. I look at your expression here and it reminds me of how effortlessly grounding life becomes when you have the right presence sharing the view alongside you.</p>
+            </div>
+        </section>
+
+        <!-- Section 5: Chapter 2 -->
+        <section class="story-card" id="scene5" data-bg="blur-heavy">
+            <h2 class="section-title">The Quiet Moments</h2>
+            <div class="inline-gallery-frame">
+                <img src="image2.jpg" alt="Shared Moment 2" class="gallery-img">
+            </div>
+            <div class="text-block">
+                <p>We've shared countless busy celebrations, but this specific memory stands out because of how peaceful it was. It's where I realized that doing absolutely nothing with you feels far more rewarding than the greatest adventure elsewhere.</p>
+            </div>
+        </section>
+
+        <!-- Section 6: Chapter 3 -->
+        <section class="story-card" id="scene6" data-bg="blur-heavy">
+            <h2 class="section-title">Laughter & Light</h2>
+            <div class="inline-gallery-frame">
+                <img src="image3.jpg" alt="Shared Moment 3" class="gallery-img">
+            </div>
+            <div class="text-block">
+                <p>Every time I look at this picture, I can practically hear your laugh playing in the back of my mind. You have this unmatched, rare ability to completely dissolve the stress of my hardest days with a single smile.</p>
+            </div>
+        </section>
+
+        <!-- Section 7: Epilogue -->
+        <section class="story-card final-scene" id="scene7" data-bg="sharp-dark">
+            <h2 class="section-title">A Simple Truth</h2>
+            <div class="text-block scrollable-message">
+                <p>When I pause to look at where I stand, where I have been, and where I hope to go, every single path winds back to your presence.</p>
+                
+                <p>You are the quiet force that makes the good days unforgettable and the difficult days manageable. Without ever needing to say a word, you have become the point around which my entire world turns—my anchor, my compass, and the horizon I look forward to every single morning.</p>
+                
+                <p class="highlight-text">Thank you for simply being. You mean more to me than any combination of words on a page could ever manage to capture.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Sleek Minimal Control Bar -->
+    <div class="interface-navigation-bar">
+        <button id="prevBtn" class="action-nav-pill">← Previous</button>
+        <div class="progress-indicator"><span id="currentStep">1</span> / 7</div>
+        <button id="nextBtn" class="action-nav-pill">Next →</button>
+    </div>
+
+    <script src="Newscript.js"></script>
+</body>
+</html>
