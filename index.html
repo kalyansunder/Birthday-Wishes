@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Story Written For You</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 45 C42 45 35 38 35 30 C35 22 42 15 50 15 C58 15 65 22 65 30 C65 38 58 45 50 45 Z M50 45 L50 85 L60 85 M50 73 L57 73' fill='none' stroke='%23ff8fa3' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='30' r='4' fill='%23ffe3e8'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app-background"></div>
+    <div id="rose-shower-container"></div>
+    <div class="ambient-glow-lights"></div>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="shooting-star-wrapper star-1"></div>
+        <div class="shooting-star-wrapper star-2"></div>
+        <div id="ls-particles"></div>
+        <div class="ls-content">
+            <div class="ls-sparkle">🌕</div>
+            <p class="ls-line ls-l1">Every beautiful story</p>
+            <p class="ls-line ls-l2">deserves</p>
+            <p class="ls-line ls-l3">a beautiful beginning...</p>
+            <p class="ls-preparing">Preparing something special...</p>
+            <button id="ls-explore-btn" class="ls-explore-btn">Begin 🌸</button>
+        </div>
+    </div>
+
+    <!-- FLOATING QUOTE -->
+    <div id="floating-quote" class="floating-quote">
+        <p class="fq-text" id="fq-text"></p>
+    </div>
+
+    <!-- CHAPTER TRANSITION OVERLAY -->
+    <div id="chapter-transition-overlay" class="chapter-transition-overlay">
+        <h2 class="transition-title" id="transition-title-text"></h2>
+        <p class="transition-quote" id="transition-quote-text"></p>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="custom-cursor" class="custom-cursor">🌹</div>
+
+    <!-- EASTER EGG MODAL -->
+    <div id="easter-egg-modal" class="easter-egg-modal hidden">
+        <div class="ee-card glass-panel-main text-center">
+            <p class="ee-stars">✨ ⭐ ✨</p>
+            <p class="ee-found">You found the hidden page...</p>
+            <div class="ee-img-wrap"><img src="easter-egg-photo.jpg" alt="Secret" class="ee-img"></div>
+            <p class="ee-caption">“My favourite picture of you.”</p>
+            <button id="easterEggCloseBtn" class="corner-nav-btn" style="margin-top:20px">Close ✨</button>
+        </div>
+    </div>
+
+    <div id="login-screen" class="login-overlay">
+        <div id="loginCard" class="glass-panel-main text-center login-card luxury-hype-border">
+            <div class="hype-glow-wrapper">
+                <span class="subtitle-tag">Welcome XYZ 🌷</span>
+                <h1 class="main-title login-hype-title">
+                    A Beautiful Arrival 🌙<br>
+                    <span class="pink-glow">For someone who would create magic</span>✨
+                </h1>
+                <div class="hype-divider"></div>
+                <p class="login-description">
+                    So, I created this little space—a place where memories, admiration, and heartfelt wishes come
+                    together to celebrate someone truly special.
+                </p>
+
+                <div class="login-form-group">
+                    <div class="input-wrapper">
+                        <input type="password" id="passwordField" placeholder="Enter security key..." autocomplete="off"
+                            max-length="8">
+                        <small class="input-hint-caption">(Hint: DDMM)</small>
+                    </div>
+                    <div id="loginErrorMessage" class="login-error-text hidden">The gates only open for the right
+                        coordinates. Try again. 🌹</div>
+                </div>
+
+                <p class="login-sub-hype">Ready to see what was built for you?</p>
+                <button id="exploreBtn" class="corner-nav-btn login-btn pulse-button">Unlock Your Space 🌹</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <!-- PROGRESS BAR -->
+        <!-- <div id="progress-display" class="progress-display hidden">
+            <span id="progress-label" class="progress-label">Chapter 1 of 9</span>
+            <div class="progress-track">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+        </div> -->
+        <div class="global-welcome-header text-center">
+            <span class="subtitle-tag">Welcome XYZ ✨</span>
+        </div>
+
+        <div id="chapterNav" class="page-counter hidden">
+            <span class="nav-hop active" data-target="1" data-title="The Day the World Smiled ✨">
+                <img src="nav-ch1.jpg" alt="Ch 1" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="2" data-title="The Wonder Called You 🌸">
+                <img src="nav-ch2.jpg" alt="Ch 2" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="3" data-title="The Story Time Wrote 📖">
+                <img src="nav-ch3.jpg" alt="Ch 3" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="4" data-title="The Hands Behind Your Smile 🤍">
+                <img src="nav-ch4.jpg" alt="Ch 4" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="5" data-title="A Star That Still Shines ⭐">
+                <img src="nav-ch5.jpg" alt="Ch 5" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="6" data-title="The Little Things I Treasure 🌹">
+                <img src="nav-ch6.jpg" alt="Ch 6" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="7" data-title="Where Our Paths Met ✨">
+                <img src="nav-ch7.jpg" alt="Ch 7" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="8" data-title="The Words I Couldn't Keep 💌">
+                <img src="nav-ch8.jpg" alt="Ch 8" class="nav-hop-img">
+            </span>
+
+            <span class="nav-hop" data-target="9" data-title="The Next Chapter Awaits 🌙">
+                <img src="nav-ch9.jpg" alt="Ch 9" class="nav-hop-img">
+            </span>
+        </div>
+
+        <div class="nav-controls-group hidden">
+            <button id="prevBtn" class="corner-nav-btn hidden">← Back</button>
+            <button id="nextBtn" class="corner-nav-btn">Continue Journey →</button>
+        </div>
+
+        <div id="page1" class="page active">
+            <div class="content-container text-center">
+                <h1 class="main-title">The Day the World <br><span class="pink-glow">Smiled</span> <img
+                        src="heading-spark.jpg" class="content-header-icon" alt="✨"></h1>
+
+                <div class="letter-body glass-panel-main interactive-lift hidden">
+                    <p>Today is the most significant date on the calendar—the anniversary of the day the world gained a
+                        person who would completely redefine the meaning of an anchor. Because of you, every single day
+                        feels brighter, firmly grounded, and beautifully complete.</p>
+                    <p class="highlight-quote">"Today is not just your birthday… it's a celebration of someone who made
+                        many lives brighter."</p>
+                    <p>This space was built entirely for you as a small sanctuary, away from the noise of the outside
+                        world, to express a depth of gratitude that words can barely hold. It is a quiet celebration of
+                        the profound impact you have on everything around you.</p>
+                    <p>Thank you for simply being in this world. When you are ready, interact with the controls below,
+                        and let's dive into the moments that define the finest chapters of your journey...</p>
+
+                    <div id="wishReveal" class="wish-reveal-box hidden">
+                        <div class="wish-heart"><img src="wish-heart.jpg" class="wish-heart-img" alt="💖"></div>
+                        <p class="wish-text">"May your life be filled with endless laughter, warmth, and the kind of
+                            happiness you so selflessly give to everyone else. Happy Birthday, XYZ! <img
+                                src="content-spark.jpg" class="inline-content-icon" alt="✨">"</p>
+                    </div>
+                </div>
+
+                <div class="cake-wish-container glass-panel-main luxury-hype-border interactive-lift text-center"
+                    id="cakeContainer">
+                    <div class="shooting-star-wrapper star-1"></div>
+                    <div class="shooting-star-wrapper star-2"></div>
+                    <div class="hype-glow-wrapper" style="padding: 10px;">
+                        <span class="subtitle-tag">A Moment For You ✨</span>
+                        <h3 class="main-title" style="font-size: 1.7rem; margin-top: 15px; margin-bottom: 15px;">
+                            Make Your Wish <br> <span class="pink-glow">Blow Out the Candle</span> <img
+                                src="cake-icon.jpg" class="inline-content-icon" alt="🎂">
+                        </h3>
+                        <div class="hype-divider"></div>
+                        <p class="cake-subtitle" id="cakeInstruction"
+                            style="font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); font-style: italic; margin-bottom: 25px; transition: color 0.3s ease;">
+                            Close your eyes, make a wish, and blow into your microphone to turn off the candle...
+                        </p>
+                        <button id="micPermissionBtn" class="corner-nav-btn login-btn pulse-button"
+                            style="margin-bottom: 25px;">🎤 Allow Microphone</button>
+                        <div class="cake-wrapper" id="cakeWrapper">
+                            <div class="cake-stand"></div>
+                            <div class="cake-layer cake-layer-bottom"></div>
+                            <div class="cake-layer cake-layer-top"></div>
+                            <div class="cake-frosting"></div>
+                            <div class="candle">
+                                <div class="flame" id="candleFlame"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page2" class="page">
+            <div class="content-container">
+                <h2 class="section-title text-center">The Wonder Called You 🌸 <img src="heading-spark.jpg"
+                        class="content-header-icon" alt="✨"></h2>
+
+                <div class="sub-chapter-nav">
+                    <button class="sub-nav-btn active" data-sub="photos">Her Best Photos <img src="nav-photos.jpg"
+                            class="inline-btn-icon" alt="📸"></button>
+                    <button class="sub-nav-btn" data-sub="personality">Personality & Smile <img src="nav-smile.jpg"
+                            class="inline-btn-icon" alt="😊"></button>
+                    <button class="sub-nav-btn" data-sub="kindness">Kindness & Caring Heart <img src="nav-heart.jpg"
+                            class="inline-btn-icon" alt="❤️"></button>
+                    <button class="sub-nav-btn" data-sub="uniqueness">Uniquely You <img src="nav-spark.jpg"
+                            class="inline-btn-icon" alt="✨"></button>
+                </div>
+
+                <div class="story-timeline">
+                    <div id="sub-page-photos" class="story-card glass-panel interactive-lift sub-page active">
+                        <div class="story-text text-center" style="width: 100%;">
+                            <h3 style="margin-bottom: 20px;">Her Best Photos <img src="nav-photos.jpg"
+                                    class="inline-content-icon" alt="📸"></h3>
+                            <p style="margin-bottom: 25px;">A small window into her radiant charm and simple grace—every
+                                photo captures a piece of her beautiful spirit.</p>
+                            <div class="photo-gallery-grid">
+                                <div class="polaroid-card" style="--rot-angle: -1.5deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="girl-dp1.jpg" alt="Her Portrait" class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Smile <img src="content-spark.jpg"
+                                            class="inline-caption-icon" alt="✨"></span>
+                                </div>
+                                <div class="polaroid-card" style="--rot-angle: 2deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="girl-dp2.jpg" alt="Her Grace" class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Elegance <img src="content-flower.jpg"
+                                            class="inline-caption-icon" alt="🌸"></span>
+                                </div>
+                                <div class="polaroid-card" style="--rot-angle: -1deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="girl-dp3.jpg" alt="Her Joy" class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Joy <img src="content-heart.jpg"
+                                            class="inline-caption-icon" alt="💖"></span>
+                                </div>
+                                <div class="polaroid-card" style="--rot-angle: 1.5deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="girl-dp4.jpg" alt="Her Charm" class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Crown <img src="content-crown.jpg"
+                                            class="inline-caption-icon" alt="👑"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sub-page-personality" class="story-card glass-panel interactive-lift sub-page">
+                        <div class="story-img-wrapper">
+                            <img src="girl-dp15.jpg" alt="Her Portrait" class="story-img-element">
+                        </div>
+                        <div class="story-text">
+                            <h3>A Genuine Personality & Radiant Smile</h3>
+                            <p>Beyond striking physical grace, your true beauty lies in the quiet elegance of your
+                                character—your resilience, intelligence, and the peaceful depth you bring into every
+                                room you enter. Your smile holds a restorative warmth capable of softening the heaviest
+                                of days, lighting up the space with absolute sincerity. You carry a rare, genuine spark
+                                that makes the world a vastly better place just by having you in it.</p>
+                        </div>
+                    </div>
+
+                    <div id="sub-page-kindness" class="story-card reverse glass-panel interactive-lift sub-page">
+                        <div class="story-img-wrapper">
+                            <img src="girl-dp15.jpg" alt="Kindness and Caring" class="story-img-element">
+                        </div>
+                        <div class="story-text">
+                            <h3>Kindness & Caring Nature</h3>
+                            <p>You give so selflessly to the world around you, acting as a natural beacon of comfort and
+                                peace for
+                                those lucky enough to cross your path. Your caring nature is quiet but profoundly
+                                felt—always listening, always protecting, and placing the happiness of your loved ones
+                                above all. It's a soft, powerful strength that heals and inspires.</p>
+                        </div>
+                    </div>
+
+                    <div id="sub-page-uniqueness" class="story-card glass-panel interactive-lift sub-page">
+                        <div class="story-img-wrapper">
+                            <img src="girl-dp15.jpg" alt="Unique Essence" class="story-img-element">
+                        </div>
+                        <div class="story-text">
+                            <h3>Things That Make You Unique</h3>
+                            <p>It is the subtle things: how you stay steady in chaotic times, your unshakeable value
+                                system, and the elegance with which you balance strength and sensitivity. You don't
+                                alter your rhythm to fit into the crowd; instead, you effortlessly stand out by simply
+                                staying true to exactly who you are. Your individuality is a rare and beautiful
+                                masterpiece.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page3" class="page">
+            <div class="content-container">
+                <h2 class="section-title text-center">The Story Time Wrote 📖<img src="heading-spark.jpg"
+                        class="content-header-icon" alt="✨"></h2>
+                <p class="section-subtitle text-center">Tracing the milestones that shaped your inspiring story</p>
+
+                <div class="vertical-timeline-engine">
+                    <div class="timeline-node-card glass-panel interactive-lift">
+                        <div class="timeline-marker">
+                            <img src="marker-born.jpg" class="timeline-marker-img" alt="Born">
+                        </div>
+                        <span class="timeline-date-tag">The Beginning</span>
+                        <h3>Born into Light</h3>
+                        <p>The world became infinitely richer and brighter on this day. A beautiful chapter began,
+                            introducing a soul destined to bring profound comfort and joy to everyone around her.</p>
+                        <div class="timeline-thumb-container"><img src="childhood.jpg" alt="Childhood photo placeholder"
+                                class="timeline-inline-img"></div>
+                    </div>
+
+                    <div class="timeline-node-card glass-panel interactive-lift">
+                        <div class="timeline-marker">
+                            <img src="marker-school.jpg" class="timeline-marker-img" alt="School">
+                        </div>
+                        <span class="timeline-date-tag">School Days</span>
+                        <h3>Formative Years & Early Joy</h3>
+                        <p>Filled with wide-eyed curiosity, lifelong friendships, and early dreams. Even as a child,
+                            your brilliant mind and kind heart set you apart as someone special.</p>
+                        <div class="timeline-thumb-container"><img src="school.jpg" alt="School photo placeholder"
+                                class="timeline-inline-img"></div>
+                    </div>
+
+                    <div class="timeline-node-card glass-panel interactive-lift">
+                        <div class="timeline-marker">
+                            <img src="college1.png" class="timeline-marker-img" alt="College">
+                        </div>
+                        <span class="timeline-date-tag">College Life</span>
+                        <h3>Stepping into Independence</h3>
+                        <p>A transformative era of discovering your voice, chasing high academic goals, earning
+                            accolades, and collecting core memories that reinforced your resilience.</p>
+                        <div class="timeline-thumb-container"><img src="college2.png" alt="College photo placeholder"
+                                class="timeline-inline-img"></div>
+                    </div>
+
+                    <div class="timeline-node-card glass-panel interactive-lift">
+                        <div class="timeline-marker">
+                            <img src="marker-career.jpg" class="timeline-marker-img" alt="Career">
+                        </div>
+                        <span class="timeline-date-tag">Career Journey</span>
+                        <h3>Building the Future</h3>
+                        <p>Stepping forward into the professional space with unwavering dedication, breaking through
+                            complex challenges, and turning ambitious aspirations into undeniable milestones.</p>
+                        <div class="timeline-thumb-container"><img src="career.jpg" alt="Career photo placeholder"
+                                class="timeline-inline-img"></div>
+                    </div>
+
+                    <div class="timeline-node-card glass-panel interactive-lift">
+                        <div class="timeline-marker">
+                            <img src="marker-present.jpg" class="timeline-marker-img" alt="Present">
+                        </div>
+                        <span class="timeline-date-tag">Present Day</span>
+                        <h3>The Absolute Present</h3>
+                        <p>Standing tall as an accomplished, profoundly grounded, and inspiring woman. The author of an
+                            incredible history—ready for the beautiful chapters still ahead.</p>
+                        <div class="timeline-thumb-container"><img src="present.jpg" alt="Present photo placeholder"
+                                class="timeline-inline-img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page4" class="page">
+            <div class="content-container">
+                <h2 class="section-title text-center">The Hands Behind Your Smile 🤍 <img src="heading-spark.jpg"
+                        class="content-header-icon" alt="✨"></h2>
+                <div class="grid-layout-display">
+                    <div class="profile-feature-card glass-panel text-center interactive-lift">
+                        <div class="circular-avatar-wrapper"><img src="family1.jpg" alt="Family Photo"
+                                class="avatar-img"></div>
+                        <h3>The Anchor of Home</h3>
+                        <p>You are the silent, golden thread that keeps your family bound together so beautifully. Your
+                            presence is their ultimate comfort, a grounding light that brings warmth and strength to the
+                            people who hold you dearest.</p>
+                    </div>
+                    <div class="profile-feature-card glass-panel text-center interactive-lift">
+                        <div class="circular-avatar-wrapper"><img src="parents.jpg" alt="Parents" class="avatar-img">
+                        </div>
+                        <h3>Deep-Rooted Values</h3>
+                        <p>The rare integrity, grace, and empathy you display daily are living proof of the incredible
+                            family foundation supporting you. Your life beautifully reflects the profound love and
+                            values passed down by your parents.</p>
+                    </div>
+                </div>
+
+                <!-- Family Album Section -->
+                <div class="family-gallery-container text-center" style="margin-top: 50px;">
+                    <h3
+                        style="color: var(--accent-dark-gold); margin-bottom: 25px; font-weight: 500; letter-spacing: 2px;">
+                        Family Album</h3>
+                    <div class="photo-gallery-grid">
+                        <div class="polaroid-card" style="--rot-angle: -2deg;">
+                            <div class="polaroid-img-frame">
+                                <img src="family1.jpg" alt="Family Moment" class="story-img-element">
+                            </div>
+                            <span class="polaroid-caption">Home</span>
+                        </div>
+                        <div class="polaroid-card" style="--rot-angle: 2deg;">
+                            <div class="polaroid-img-frame">
+                                <img src="parents.jpg" alt="Parents" class="story-img-element">
+                            </div>
+                            <span class="polaroid-caption">Parents</span>
+                        </div>
+                        <div class="polaroid-card" style="--rot-angle: -1deg;">
+                            <div class="polaroid-img-frame">
+                                <img src="family2.jpg" alt="Family Gathering" class="story-img-element">
+                            </div>
+                            <span class="polaroid-caption">Appreciation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page5" class="page">
+            <div class="content-container text-center">
+                <div class="tribute-header-group">
+                    <div class="celestial-angel-wing-wrapper">
+                        <img src="chapter5-header.jpg" class="celestial-angel-wing-img" alt="🕊️">
+                    </div>
+                    <h2 class="section-title memorial-title">A Star That Still Shines ⭐</h2>
+                    <span class="subtitle-tag dedicated-sub">Forever in our Hearts</span>
+                </div>
+
+                <div class="memorial-glass-card glass-panel-main interactive-lift">
+                    <div class="angelic-glow-ring"></div>
+                    <div class="memorial-img-wrapper">
+                        <img src="memorial.jpg" alt="Cherished Memory" class="memorial-img-element">
+                    </div>
+                    <p class="memorial-verse">Some bonds are entirely sacred, existing far beyond the limits of time,
+                        sight, or physical presence.</p>
+                    <p>True protective love isn't a memory of the past—it is actively living inside you, walking with
+                        you through every single step, anchoring your soul just as deeply as it always has. Every memory
+                        remains clear, a soft beacon of light that guides your path.</p>
+                    <p>Dedicated with deepest admiration and love to a beautiful brother who will always remain your
+                        strongest guide, your protective anchor, and your silent strength. His light continues to live
+                        through your smile, your warmth, and the kindness you share with the world.</p>
+                    <p class="comfort-highlight"
+                        style="font-size: 1.35rem; font-weight: 500; margin-top: 30px; letter-spacing: 1px;">
+                        "Some stars never stop shining."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="page6" class="page">
+            <div class="content-container">
+                <h2 class="section-title text-center">The Little Things I Treasure 🌹 <img src="heading-spark.jpg"
+                        class="content-header-icon" alt="✨"></h2>
+
+                <div class="admire-vertical-timeline">
+                    <div class="admire-node-card glass-panel interactive-lift">
+                        <div class="admire-marker"></div>
+                        <div class="admire-content">
+                            <div class="admire-icon-wrapper">
+                                <img src="admire1.jpg" alt="Your Smile" class="admire-img-element">
+                            </div>
+                            <div class="admire-text">
+                                <h3>Your Smile</h3>
+                                <p>A pure, radiant light that instantly lifts the mood of any room you step into. It is
+                                    a safe haven for those who love you.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admire-node-card glass-panel interactive-lift">
+                        <div class="admire-marker"></div>
+                        <div class="admire-content">
+                            <div class="admire-icon-wrapper">
+                                <img src="admire2.jpg" alt="Your Courage" class="admire-img-element">
+                            </div>
+                            <div class="admire-text">
+                                <h3>Your Courage</h3>
+                                <p>How you handle life's challenges with quiet grace, moving forward through adversity
+                                    without losing your softness.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admire-node-card glass-panel interactive-lift">
+                        <div class="admire-marker"></div>
+                        <div class="admire-content">
+                            <div class="admire-icon-wrapper">
+                                <img src="admire3.jpg" alt="Your Kind Heart" class="admire-img-element">
+                            </div>
+                            <div class="admire-text">
+                                <h3>Your Kind Heart</h3>
+                                <p>Your instinctive empathy and how you protectively love the people around you makes
+                                    you genuinely irreplaceable.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admire-node-card glass-panel interactive-lift">
+                        <div class="admire-marker"></div>
+                        <div class="admire-content">
+                            <div class="admire-icon-wrapper">
+                                <img src="admire4.jpg" alt="Your Dreams" class="admire-img-element">
+                            </div>
+                            <div class="admire-text">
+                                <h3>Your Dreams</h3>
+                                <p>The inspiring, purposeful vision you hold for your life, and the dedication you show
+                                    in making them a reality.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admire-node-card glass-panel interactive-lift">
+                        <div class="admire-marker"></div>
+                        <div class="admire-content">
+                            <div class="admire-icon-wrapper">
+                                <img src="admire5.jpg" alt="Your Strength" class="admire-img-element">
+                            </div>
+                            <div class="admire-text">
+                                <h3>Your Strength</h3>
+                                <p>An elegant, unshakeable inner core that serves as a dependable emotional anchor when
+                                    the currents around you get rough.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page7" class="page">
+            <div class="content-container">
+                <h2 class="section-title text-center">Where Our Paths Met ✨ <img src="heading-spark.jpg"
+                        class="content-header-icon" alt="✨"></h2>
+
+                <div class="sub-chapter-nav">
+                    <button class="sub-nav-btn active" data-sub="firstmeet">How We Met</button>
+                    <button class="sub-nav-btn" data-sub="laughter">Funny Moments</button>
+                    <button class="sub-nav-btn" data-sub="memories">Memorable Chats</button>
+                    <button class="sub-nav-btn" data-sub="album">Photos & Memories <img src="nav-photos.jpg"
+                            class="inline-btn-icon" alt="📸"></button>
+                </div>
+
+                <div class="story-timeline">
+                    <div id="sub-page-firstmeet" class="story-card glass-panel interactive-lift sub-page active">
+                        <div class="story-img-wrapper">
+                            <img src="us1.jpg" alt="How we met" class="story-img-element">
+                        </div>
+                        <div class="story-text">
+                            <h3>The Unforgettable Beginning</h3>
+                            <p>It started with simple conversations, but there was an instant, undeniable comfort.
+                                Neither of us knew then how deeply these early days would thread into our lives, forming
+                                a bond that is entirely permanent.</p>
+                        </div>
+                    </div>
+
+                    <div id="sub-page-laughter" class="story-card reverse glass-panel interactive-lift sub-page">
+                        <div class="story-img-wrapper">
+                            <img src="us2.jpg" alt="Laughter" class="story-img-element">
+                        </div>
+                        <div class="story-text">
+                            <h3>Laughter & Inside Jokes</h3>
+                            <p>From teasing remarks to silent giggles, the comfort we share makes every interaction feel
+                                light. Laughter is the golden canvas of our story, making the hardest days feel
+                                infinitely
+                                softer.</p>
+                        </div>
+                    </div>
+
+                    <div id="sub-page-memories" class="story-card glass-panel interactive-lift sub-page">
+                        <div class="story-img-wrapper">
+                            <img src="us3.jpg" alt="Memorable chats" class="story-img-element">
+                        </div>
+                        <div class="story-text">
+                            <h3>Late Night Conversations</h3>
+                            <p>The quiet hours when we shared our dreams, fears, and honest thoughts. Those midnight
+                                chats became the foundation of our trust, proving that our minds gravitate toward the
+                                same wavelength.</p>
+                        </div>
+                    </div>
+
+                    <div id="sub-page-album" class="story-card glass-panel interactive-lift sub-page">
+                        <div class="story-text text-center" style="width: 100%;">
+                            <h3 style="margin-bottom: 20px;">Photos Together & Cherished Screenshots</h3>
+                            <p style="margin-bottom: 25px;">A collection of captured smiles and text screenshots that
+                                we'll always look back on with warmth.</p>
+                            <div class="photo-gallery-grid">
+                                <div class="polaroid-card" style="--rot-angle: -1.5deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="us-photo1.jpg" alt="Beautiful Moment Together"
+                                            class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Together</span>
+                                </div>
+                                <div class="polaroid-card" style="--rot-angle: 2deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="us-screenshot1.jpg" alt="Cute Conversation Screenshot"
+                                            class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Laughter</span>
+                                </div>
+                                <div class="polaroid-card" style="--rot-angle: -1deg;">
+                                    <div class="polaroid-img-frame">
+                                        <img src="us-photo2.jpg" alt="Captured Memory" class="story-img-element">
+                                    </div>
+                                    <span class="polaroid-caption">Treasured</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page8" class="page">
+            <div class="content-container text-center">
+                <div class="glowing-rose-container">
+                    <div class="pulse-ring"></div>
+                    <img src="chapter8-header.jpg" class="glowing-rose-img" alt="🌹">
+                </div>
+                <h2 class="main-title pink-glow">The Words I Couldn't Keep 💌</h2>
+
+                <div class="proposal-confirm-card glass-panel interactive-lift text-center" id="proposalConfirmCard">
+                    <h3>Unlock the Final Truth</h3>
+                    <p class="confirm-subtitle">You've reached the end of this little journey, but there's still one
+                        page I've been waiting for you to read.</p>
+                    <button class="corner-nav-btn pulse-button" id="confirmReadyBtn" style="margin-top: 15px;">Would you
+                        like to continue?</button>
+                </div>
+
+                <div class="proposal-long-text glass-panel interactive-lift hidden">
+                    <p>"There are moments in life when you cross paths with someone, and the entire rhythm of your world
+                        gently changes for the better. Tracing back through these days, your presence has become my
+                        ultimate constant—a quiet anchor in every storm and the warmest light in every single room."</p>
+                    <p>"I carry a deep, quiet gratitude for the person you are. Your kindness, your resilience, and the
+                        selfless comfort you bring to everyone around you is something I admire more than words can say.
+                        You've taught me what it means to stay steady, and you've colored my life with a happiness that
+                        is completely irreplaceable."</p>
+                    <p>"You have woven yourself so deeply into my thoughts, my dreams, and my days. Every path I look
+                        forward to walking begins and ends with you. You mean more to me than any combination of
+                        sentences on a screen could ever capture, and that is a truth I hold close to my heart every
+                        single day."</p>
+                </div>
+
+                <!-- Interactive Mail UI Card (Quiet Wish) -->
+                <div class="proposal-box-container hidden" id="proposalReveal">
+                    <div class="proposal-mail-card luxury-hype-border">
+                        <div class="mail-border-dashed"></div>
+                        <img src="envelope-heart.jpg" class="mail-stamp-icon" alt="Stamp">
+                        <div class="open-card-content">
+                            <h4 class="pink-glow" style="margin-top: 5px;">A Quiet Wish...</h4>
+                            <p
+                                style="font-size: 1.05rem; line-height: 1.7; color: var(--text-muted); font-style: italic; position: relative; z-index: 2;">
+                                "If your heart ever feels the same… I’d love to become a small part of the beautiful
+                                story you’re still writing."
+                            </p>
+                            <span class="heart-signature"
+                                style="display: block; margin-top: 20px; color: var(--accent-bright-gold); font-size: 1.15rem; font-weight: 500;">With
+                                all my heart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="response-card celebration-card interactive-lift hidden">
+                    <h3>Thank you for holding an irreplaceable place in this life, Constant.</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="page9" class="page">
+            <div class="content-container text-center">
+                <div class="glowing-moon-container">
+                    <div class="moon-glow-ring"></div>
+                    <img src="chapter9-header.jpg" class="glowing-moon-img" alt="🌙">
+                </div>
+                <h2 class="main-title pink-glow">The Next Chapter Awaits 🌙</h2>
+                <div class="final-card glass-panel-main interactive-lift text-center"
+                    style="max-width: 650px; margin: 0 auto; padding: 40px 30px;">
+                    <p
+                        style="font-size: 1.25rem; color: var(--accent-bright-gold); font-weight: 300; line-height: 1.8; margin-bottom: 20px;">
+                        Happy Birthday once again, Constant.
+                    </p>
+                    <p
+                        style="font-size: 1.15rem; color: var(--text-muted); font-style: italic; font-weight: 300; line-height: 1.8;">
+                        “If every chapter until today has been beautiful... I'd be grateful if the pages ahead could
+                        have a little more of you in them. ❤️”
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="musicPod" class="floating-music-pod-core">
+        <div class="cd-wrap-axis">
+            <div id="vinylDisk" class="vinyl-disk-ui">
+                <div class="vinyl-center-core"></div>
+            </div>
+        </div>
+        <div class="pod-expanded-controls">
+            <button id="audioToggleBtn" class="audio-toggle-action">▶ Play</button>
+            <div class="pod-volume-slider-group tilt-down-panel">
+                <span class="pod-volume-symbol">🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.4">
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop src="Naan-Unnai-Neenga-Maarten-Ringtone.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+
+</html>
